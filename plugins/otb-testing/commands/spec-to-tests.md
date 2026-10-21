@@ -5,7 +5,15 @@ argument-hint: <spec URL or package id> [which actor or profile, if you already 
 
 You have been asked to produce conformance tests for: **$ARGUMENTS**
 
-Follow the `spec-to-tests` skill exactly, in order, and do not skip a gate.
+Follow the `spec-to-tests` skill exactly, in order, and do not skip a gate —
+starting with its stage 0, which asks whether this is the right skill at all.
+
+These tests measure a system across an interface, or an instance against a
+profile. **If the subject turns out to be a library's internals — its classes,
+functions, error paths, coverage — say so and stop.** Reshaping that into an
+actor plan produces something that looks like a test plan and measures nothing.
+Offer what this skill can genuinely add instead: the content that library
+produces or consumes, or its agreement with a test bed.
 
 Before anything else, confirm the prerequisites in that skill's
 `references/setup.md`, because stage 4 fails late and confusingly without them.

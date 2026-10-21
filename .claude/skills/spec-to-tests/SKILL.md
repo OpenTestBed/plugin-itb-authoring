@@ -6,7 +6,8 @@ description: Turn a specification into executable conformance tests — set the 
 # From a specification to running tests
 
 Four stages, in order, each with a gate you cannot skip: **scope, identify,
-author, prove**. The last stage has two gates — the tests must compile, and
+author, prove** — preceded by stage 0, which is deciding whether to do this at
+all. The last stage has two gates — the tests must compile, and
 they must run against a real Interoperability Test Bed. A test that has only
 compiled has established nothing.
 
@@ -16,6 +17,39 @@ Stages 3 and 4 you do.
 
 If you have not run this before, read `references/setup.md` first and confirm
 the prerequisites, because stage 4 fails late and confusingly without them.
+
+## Stage 0 — Is this the right skill at all?
+
+These tests measure **a system across an interface** or **an instance against a
+profile**. A test case sends a request, receives a message, or validates a
+document. That is the whole repertoire.
+
+So before stage 1, work out what the subject actually is:
+
+| The subject is | This skill? |
+|---|---|
+| A system that implements a specification's actor | **yes** — actor-scoped |
+| Documents or messages that must conform | **yes** — profile-scoped |
+| **A library's internals** — its classes, functions, error paths, coverage | **no** |
+
+**If it is a library, say so and stop.** Do not reshape it into an actor plan:
+there is no interface to drive and no instance to validate, so whatever you
+produce will look like a test plan and measure nothing. Unit tests belong to
+that project's own framework — JUnit, `cargo test`, Jest — named after the
+requirements they verify, and a mature project usually already has them along
+with coverage floors and a generator keeping the plan current. Say that, and
+offer what this skill *can* add instead:
+
+- the **content** the library produces or consumes, tested as instances against
+  their profiles;
+- its **agreement with a test bed** — the library and an ITB run over the same
+  material and are compared.
+
+Both are real plans and neither is the library's internals. A project can want
+all three; they are separate deliverables and should not be conflated.
+
+The tell is simple: **if you cannot name the request a test case sends, or the
+document it validates, this is not the skill.**
 
 ## Stage 1 — Take the spec and set the scope
 
