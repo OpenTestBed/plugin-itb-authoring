@@ -1,0 +1,52 @@
+{
+  "id": "hl7.fhir.eu.health-data-api.test",
+  "canonical": "http://example.com/fhir/hl7.fhir.eu.health-data-api.test",
+  "name": "EuHealthDataApiTesting",
+  "title": "EU Health Data API: TestPlans and Gherkin for the EEHRxF actors",
+  "description": "A demonstration IG that declares, as TestPlan resources and Gherkin feature files, the conformance tests for two actors of the EU Health Data API 1.0.0-ballot: the EEHRxF Resource Access Provider and the EEHRxF Resource Consumer. Every test case is derived from an obligation its CapabilityStatement states, and names that obligation with its SHALL or SHOULD expectation.",
+  "disclaimer": "This is not an approved test specification for the EU Health Data API, and these tests have not been executed against any implementation.",
+  "version": "0.1.0",
+  "fhirVersion": "6.0.0-snapshot1",
+  "license": "CC0-1.0",
+  "publisher": {
+    "name": "Jose Costa Teixeira",
+    "url": "https://github.com/costateixeira"
+  },
+  "spec": {
+    "id": "hl7.fhir.eu.health-data-api",
+    "alias": "euhda",
+    "version": "1.0.0-ballot",
+    "uri": "http://hl7.eu/fhir/health-data-api/ImplementationGuide/hl7.fhir.eu.health-data-api",
+    "title": "EU Health Data API 1.0.0-ballot",
+    "site": "https://hl7.eu/fhir/health-data-api/",
+    "dependency": false
+  },
+  "specDependencyNote": "The specification is FHIR R4 while this test IG is R6, which the publisher cannot resolve across. Only the CapabilityStatement canonicals are cited, in prose and in each plan's scope, so nothing needs to resolve against the package",
+  "runner": "https://www.itb.ec.europa.eu/docs/guides/latest/",
+  "features": "public/features",
+  "processPage": "../features/EU-HDA-TESTS.md",
+  "out": "E:\\work\\ImplementationGuides\\eu-hda-test",
+  "planIntro": "One test plan per actor of the [EU Health Data API](https://hl7.eu/fhir/health-data-api/). The actors' obligations are machine readable — each CapabilityStatement declares, per resource type, the interactions and search parameters the actor must support, with a SHALL or SHOULD expectation — so every test names the obligation it covers:",
+  "artifactsSummary": "The two TestPlan resources, one per actor, and the Gherkin scripts they name.",
+  "testingTitle": "Testing the EU Health Data API actors",
+  "actors": [
+    {
+      "id": "eu-hda-resource-access-provider",
+      "title": "Resource Access Provider",
+      "actor": "ResourceAccessProvider",
+      "scope": "https://hl7.eu/fhir/health-data-api/CapabilityStatement-EEHRxF-ResourceAccessProvider.html",
+      "scopeDescription": "The EEHRxF Resource Access Provider — the FHIR server which exposes patient data over the twelve resource types its CapabilityStatement declares — is the system under test.",
+      "summary": "the server supports every interaction and search parameter it declares, and refuses or handles what it must",
+      "feature": "eu-hda-resource-access-provider.feature"
+    },
+    {
+      "id": "eu-hda-resource-consumer",
+      "title": "Resource Consumer",
+      "actor": "ResourceConsumer",
+      "scope": "https://hl7.eu/fhir/health-data-api/CapabilityStatement-EEHRxF-ResourceConsumer.html",
+      "scopeDescription": "The EEHRxF Resource Consumer — the client which reads and searches patient data — is the system under test. For this actor the test bed plays the Resource Access Provider and waits to be called.",
+      "summary": "the client issues requests the specification allows, and handles the answers a conformant server may give",
+      "feature": "eu-hda-resource-consumer.feature"
+    }
+  ]
+}
