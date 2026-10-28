@@ -265,10 +265,17 @@ checking the top-level `Binary-*.html` makes a perfectly good page look empty.
 **Open `output/en/Binary-<id>-gherkin-script.html`** — a real one is tens of
 kilobytes and contains the `Feature:` and every `Scenario:`.
 
-Known gap, worth stating when handing over: the Binaries are **not in the
-artifacts index**, so a reader of the TestPlan page has no link to the script —
-`suite.input.file` appears as plain text. The script is published and ships in
-`package/tests/gherkin/`, but a reader cannot reach it by clicking.
+Known gap, worth stating when handing over: **`artifacts.html` lists nothing** —
+not the Binaries and not the TestPlans either. Both are additional resources, so
+the publisher has no renderer to group them under. The IG resource itself
+declares all of them correctly with names, so this is publisher behaviour and
+not something the config can fix.
+
+The builder works around it by linking from the pages it does control: the
+index page lists each script, and each TestPlan's description now ends with a
+link to its Binary. Without that the TestPlan page explains that every test is a
+`Scenario:` of a feature and then gives the reader no way to see the feature,
+since `suite.input.file` renders as plain text.
 
 ## 7. Keep the record
 
