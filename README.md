@@ -11,6 +11,11 @@ Docker to write, compile or package tests — only to execute them.
 > published IG to an installable test package, including the questions you will
 > be asked and what to do when it goes wrong. The rest of this README is the
 > reference.
+>
+> **Wondering what it is for?**
+> [docs/fhir-testing.md](docs/fhir-testing.md) explains what the language, the
+> FHIR validator dialect and the dialect architecture bring to FHIR testing —
+> and what they do not.
 
 ## 1. Set up
 
